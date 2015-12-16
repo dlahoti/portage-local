@@ -13,7 +13,7 @@ SLOT="0"
 KEYWORDS="~amd64"
 IUSE="+apg +bmon +cmatrix +ccze +vim +htop +jp2a +mpv +ssh +tree"
 
-DEPEND="apg? ( add-admin/apg )
+DEPEND="apg? ( app-admin/apg )
 	bmon? ( net-analyzer/bmon )
 	cmatrix? ( app-misc/cmatrix )
 	ccze? ( app-admin/ccze )
