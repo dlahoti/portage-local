@@ -18,7 +18,7 @@ SLOT="2/${PV}"
 KEYWORDS="~amd64 ~x86"
 IUSE=""
 
-RDEPEND=">=dev-haskell/glib-0.12.1:=[profile?] <dev-haskell/glib-0.15:=[profile?]
+RDEPEND=">=dev-haskell/glib-0.12.1:=[profile?]
 	>=dev-haskell/gtk-0.12.1:=[profile?]
 	>=dev-lang/ghc-7.4.1:=
 	x11-libs/libX11

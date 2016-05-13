@@ -20,7 +20,7 @@ IUSE=""
 
 S="${S}/${PN}"
 
-RDEPEND=">=dev-haskell/glib-0.13.0.0:=[profile?] <dev-haskell/glib-0.14:=[profile?]
+RDEPEND=">=dev-haskell/glib-0.13.0.0:=[profile?]
 	dev-haskell/mtl:=[profile?]
 	>=dev-lang/ghc-7.4.1:=
 	dev-libs/glib:2

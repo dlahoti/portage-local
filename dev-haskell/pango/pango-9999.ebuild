@@ -20,8 +20,8 @@ IUSE=""
 
 S="${S}/${PN}"
 
-RDEPEND=">=dev-haskell/cairo-0.13.0.0:=[profile?] <dev-haskell/cairo-0.14:=[profile?]
-	>=dev-haskell/glib-0.13.0.0:=[profile?] <dev-haskell/glib-0.14:=[profile?]
+RDEPEND=">=dev-haskell/cairo-0.13.0.0:=[profile?]
+	>=dev-haskell/glib-0.13.0.0:=[profile?]
 	dev-haskell/mtl:=[profile?]
 	>=dev-haskell/text-0.11.0.6:=[profile?] <dev-haskell/text-1.3:=[profile?]
 	>=dev-lang/ghc-7.4.1:=
