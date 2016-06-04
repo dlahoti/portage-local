@@ -1,0 +1,33 @@
+--- afs_fetchstore2.c	2016-06-04 05:32:20.426587375 -0400
++++ afs_fetchstore.c	2016-06-04 05:33:05.757402740 -0400
+@@ -886,20 +886,20 @@
+ 
+ static
+ struct fetchOps rxfs_fetchUfsOps = {
+-    rxfs_fetchMore,
+-    rxfs_fetchUfsRead,
+-    rxfs_fetchUfsWrite,
+-    rxfs_fetchClose,
+-    rxfs_fetchDestroy
++    .more = rxfs_fetchMore,
++    .read = rxfs_fetchUfsRead,
++    .write = rxfs_fetchUfsWrite,
++    .close = rxfs_fetchClose,
++    .destroy = rxfs_fetchDestroy
+ };
+ 
+ static
+ struct fetchOps rxfs_fetchMemOps = {
+-    rxfs_fetchMore,
+-    rxfs_fetchMemRead,
+-    rxfs_fetchMemWrite,
+-    rxfs_fetchClose,
+-    rxfs_fetchDestroy
++    .more = rxfs_fetchMore,
++    .read = rxfs_fetchMemRead,
++    .write = rxfs_fetchMemWrite,
++    .close = rxfs_fetchClose,
++    .destroy = rxfs_fetchDestroy
+ };
+ 
+ afs_int32
