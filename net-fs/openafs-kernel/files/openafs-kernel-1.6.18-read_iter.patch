@@ -1,0 +1,11 @@
+--- src/config/afsconfig.h.in	2016-06-04 05:45:01.641547987 -0400
++++ src/config/afsconfig.h.in	2016-06-05 00:49:17.327305018 -0400
+@@ -888,7 +888,7 @@
+ 
+ /* Define if kernel typedef'd struct file_operations has the read_iter element
+    */
+-#undef STRUCT_FILE_OPERATIONS_HAS_READ_ITER
++#define STRUCT_FILE_OPERATIONS_HAS_READ_ITER
+ 
+ /* Define if kernel typedef'd struct file_operations has the sendfile element
+    */
