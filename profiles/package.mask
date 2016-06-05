@@ -1,6 +1,0 @@
-=dev-haskell/cairo-9999
-=dev-haskell/gio-9999
-=dev-haskell/glib-9999
-=dev-haskell/gtk-9999
-=dev-haskell/gtk2hs-buildtools-9999
-=dev-haskell/pango-9999
