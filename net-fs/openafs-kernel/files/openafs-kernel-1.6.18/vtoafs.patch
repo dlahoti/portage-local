@@ -5,7 +5,7 @@
  #define AFSTOV(vc) ((vc)->v)
  #else
 -#define VTOAFS(V) ((struct vcache *)(V))
-+#define VTOAFS(V) ((struct vcache *)(v->v_data))
++#define VTOAFS(V) ((struct vcache *)(V->v_data))
  #define AFSTOV(V) (&(V)->v)
  #endif
 
