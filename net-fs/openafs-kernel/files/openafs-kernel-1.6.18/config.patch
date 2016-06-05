@@ -1,20 +1,12 @@
---- a/src/config/afsconfig.h.in	2016-06-05 00:51:23.548042073 -0400
-+++ b/src/config/afsconfig.h.in	2016-06-05 01:03:38.436520288 -0400
-@@ -778,7 +778,7 @@
- #undef LINUX_REFRIGERATOR_TAKES_PF_FREEZE
+--- a/configure.ac	2016-04-27 10:30:51.000000000 -0400
++++ b/configure.ac	2016-06-05 01:26:29.112417916 -0400
+@@ -4,6 +4,9 @@
+ AC_CONFIG_SRCDIR([src/config/stds.h])
+ AM_INIT_AUTOMAKE
  
- /* define if kernel uses new export ops */
--#undef NEW_EXPORT_OPS
-+#define NEW_EXPORT_OPS
- 
- /* Name of package */
- #undef PACKAGE
-@@ -888,7 +888,7 @@
- 
- /* Define if kernel typedef'd struct file_operations has the read_iter element
-    */
--#undef STRUCT_FILE_OPERATIONS_HAS_READ_ITER
-+#define STRUCT_FILE_OPERATIONS_HAS_READ_ITER
- 
- /* Define if kernel typedef'd struct file_operations has the sendfile element
-    */
++AC_DEFINE(NEW_EXPORT_OPS)
++AC_DEFINE(STRUCT_FILE_OPERATIONS_HAS_READ_ITER)
++
+ AC_CONFIG_HEADER(src/config/afsconfig.h)
+ MACOS_VERSION=1.6.18
+ LINUX_PKGVER=1.6.18
