@@ -1,0 +1,13 @@
+[Unit]
+Description=AppArmor profile: %i
+DefaultDependencies=no
+Before=apparmor.target
+
+[Service]
+Type=oneshot
+ExecStart=/sbin/apparmor_parser -r /etc/apparmor.d/%i
+ExecStop=/sbin/apparmor_parser -R /etc/apparmor.d/%i
+RemainAfterExit=yes
+
+[Install]
+WantedBy=apparmor.target

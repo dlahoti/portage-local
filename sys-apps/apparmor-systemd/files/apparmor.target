@@ -1,0 +1,7 @@
+[Unit]
+Description=AppArmor target
+DefaultDependencies=no
+Before=sysinit.target
+
+[Install]
+WantedBy=sysinit.target
