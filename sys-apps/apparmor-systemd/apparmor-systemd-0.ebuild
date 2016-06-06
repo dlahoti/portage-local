@@ -15,6 +15,10 @@ DEPEND="
 
 RDEPEND="${DEPEND}"
 
+pkg_setup() {
+	mkdir -p "${S}"
+}
+
 src_install() {
 	systemd_dounit "${FILESDIR}/apparmor.target"
 	systemd_dounit "${FILESDIR}/apparmor@.service"
