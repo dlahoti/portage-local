@@ -140,7 +140,7 @@ index c7c2581..ed4bfc9 100644
  		       [NEW_EXPORT_OPS],
  		       [define if kernel uses new export ops],
  		       [])
-@@ -620,8 +620,8 @@ AC_DEFUN([LINUX_DOP_D_DELETE_TAKES_CONST], [
+@@ -641,8 +641,8 @@ AC_DEFUN([LINUX_DOP_D_DELETE_TAKES_CONST], [
  			[#include <linux/fs.h>
  			#include <linux/dcache.h>
  			static int _d_del(const struct dentry *de) { return 0; }
@@ -151,7 +151,7 @@ index c7c2581..ed4bfc9 100644
  			[DOP_D_DELETE_TAKES_CONST],
  			[define if dentry.d_op->d_delete takes a const argument],
  			[-Werror])
-@@ -633,8 +633,8 @@ AC_DEFUN([LINUX_IOP_MKDIR_TAKES_UMODE_T], [
+@@ -654,8 +654,8 @@ AC_DEFUN([LINUX_IOP_MKDIR_TAKES_UMODE_T], [
  			[ac_cv_linux_iop_mkdir_takes_umode_t],
  			[#include <linux/fs.h>
  			static int _mkdir(struct inode *i, struct dentry *d, umode_t m) { return 0; }
@@ -162,7 +162,7 @@ index c7c2581..ed4bfc9 100644
  			[IOP_MKDIR_TAKES_UMODE_T],
  			[define if inode.i_op->mkdir takes a umode_t argument],
  			[-Werror])
-@@ -660,8 +660,8 @@ AC_DEFUN([LINUX_EXPORT_OP_ENCODE_FH_TAKES_INODES], [
+@@ -681,8 +681,8 @@ AC_DEFUN([LINUX_EXPORT_OP_ENCODE_FH_TAKES_INODES], [
  			[ac_cv_linux_export_op_encode_fh__takes_inodes],
  			[#include <linux/exportfs.h>
  			static int _encode_fh(struct inode *i, __u32 *fh, int *len, struct inode *p) { return 0; }
@@ -173,7 +173,7 @@ index c7c2581..ed4bfc9 100644
  			[EXPORT_OP_ENCODE_FH_TAKES_INODES],
  			[define if encode_fh export op takes inode arguments],
  			[-Werror])
-@@ -748,8 +748,8 @@ AC_DEFUN([LINUX_DOP_D_REVALIDATE_TAKES_UNSIGNED], [
+@@ -769,8 +769,8 @@ AC_DEFUN([LINUX_DOP_D_REVALIDATE_TAKES_UNSIGNED], [
  			[#include <linux/fs.h>
  			#include <linux/namei.h>
  			static int reval(struct dentry *d, unsigned int i) { return 0; }
@@ -184,7 +184,7 @@ index c7c2581..ed4bfc9 100644
  		       [DOP_REVALIDATE_TAKES_UNSIGNED],
  		       [define if your dops.d_revalidate takes an unsigned int argument],
  		       [-Werror])
-@@ -762,8 +762,8 @@ AC_DEFUN([LINUX_IOP_LOOKUP_TAKES_UNSIGNED], [
+@@ -783,8 +783,8 @@ AC_DEFUN([LINUX_IOP_LOOKUP_TAKES_UNSIGNED], [
  			[#include <linux/fs.h>
  			#include <linux/namei.h>
  			static struct dentry *look(struct inode *i, struct dentry *d, unsigned int j) { return NULL; }
