@@ -46,23 +46,26 @@ index 834e8ad..514c46e 100644
  
  int
 diff --git a/src/afs/afs_fetchstore.c b/src/afs/afs_fetchstore.c
-index f494677..2e23040 100644
+index f494677..cdf5a0c 100644
 --- a/src/afs/afs_fetchstore.c
 +++ b/src/afs/afs_fetchstore.c
-@@ -886,20 +886,20 @@ rxfs_fetchMore(void *r, afs_int32 *length, afs_uint32 *moredata)
+@@ -886,20 +886,28 @@ rxfs_fetchMore(void *r, afs_int32 *length, afs_uint32 *moredata)
  
  static
  struct fetchOps rxfs_fetchUfsOps = {
--    rxfs_fetchMore,
--    rxfs_fetchUfsRead,
--    rxfs_fetchUfsWrite,
--    rxfs_fetchClose,
--    rxfs_fetchDestroy
++#if defined(__GNUC__) || (defined(__STDC_VERSION__) && __STDC_VERSION__ >= 199901L)
 +    .more = rxfs_fetchMore,
 +    .read = rxfs_fetchUfsRead,
 +    .write = rxfs_fetchUfsWrite,
 +    .close = rxfs_fetchClose,
 +    .destroy = rxfs_fetchDestroy
++#else
+     rxfs_fetchMore,
+     rxfs_fetchUfsRead,
+     rxfs_fetchUfsWrite,
+     rxfs_fetchClose,
+     rxfs_fetchDestroy
++#endif
  };
  
  static
@@ -213,14 +216,14 @@ index 604d380..96e2e04 100644
  		       [define if your iops.lookup takes an unsigned int argument],
  		       [-Werror])
 diff --git a/src/rxkad/rxkad_client.c b/src/rxkad/rxkad_client.c
-index 2dd8163..0570535 100644
+index 2dd8163..f6f4d7c 100644
 --- a/src/rxkad/rxkad_client.c
 +++ b/src/rxkad/rxkad_client.c
 @@ -68,6 +68,23 @@
  #endif /* max */
  
  static struct rx_securityOps rxkad_client_ops = {
-+#if defined(__GNUC__) || (defined(__STDC_VERSION__ && __STDC_VERSION__ >= 199901L)
++#if defined(__GNUC__) || (defined(__STDC_VERSION__) && __STDC_VERSION__ >= 199901L)
 +    .op_Close = rxkad_Close,
 +    .op_NewConnection = rxkad_NewConnection,	/* every new connection */
 +    .op_PreparePacket = rxkad_PreparePacket,	/* once per packet creation */
