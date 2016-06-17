@@ -213,28 +213,14 @@ index 604d380..96e2e04 100644
  		       [define if your iops.lookup takes an unsigned int argument],
  		       [-Werror])
 diff --git a/src/rxkad/rxkad_client.c b/src/rxkad/rxkad_client.c
-index 2dd8163..214c308 100644
+index 2dd8163..0570535 100644
 --- a/src/rxkad/rxkad_client.c
 +++ b/src/rxkad/rxkad_client.c
-@@ -68,21 +68,21 @@
+@@ -68,6 +68,23 @@
  #endif /* max */
  
  static struct rx_securityOps rxkad_client_ops = {
--    rxkad_Close,
--    rxkad_NewConnection,	/* every new connection */
--    rxkad_PreparePacket,	/* once per packet creation */
--    0,				/* send packet (once per retrans.) */
--    0,
--    0,
--    0,
--    rxkad_GetResponse,		/* respond to challenge packet */
--    0,
--    rxkad_CheckPacket,		/* check data packet */
--    rxkad_DestroyConnection,
--    rxkad_GetStats,
--    0,
--    0,
--    0,
++#if defined(__GNUC__) || (defined(__STDC_VERSION__ && __STDC_VERSION__ >= 199901L)
 +    .op_Close = rxkad_Close,
 +    .op_NewConnection = rxkad_NewConnection,	/* every new connection */
 +    .op_PreparePacket = rxkad_PreparePacket,	/* once per packet creation */
@@ -250,6 +236,15 @@ index 2dd8163..214c308 100644
 +    .op_SetConfiguration = 0,
 +    .op_Spare2 = 0,
 +    .op_Spare3 = 0,
++#else
+     rxkad_Close,
+     rxkad_NewConnection,	/* every new connection */
+     rxkad_PreparePacket,	/* once per packet creation */
+@@ -83,6 +100,7 @@ static struct rx_securityOps rxkad_client_ops = {
+     0,
+     0,
+     0,
++#endif
  };
  
  /* To minimize changes to epoch, we set this Cuid once, and everyone (including
