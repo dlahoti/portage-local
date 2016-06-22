@@ -122,7 +122,7 @@ src_prepare() {
 }
 
 src_configure() {
-	local qt_ver=$(qmake -query QT_VERSION)
+	local qt_ver=$(qtchoose -qt=5 -run-tool=qmake -query QT_VERSION)
 	append-cxxflags "-I/usr/include/qt5/QtGui/${qt_ver}/QtGui"
 	append-cxxflags "-I/usr/include/qt5/QtCore/${qt_ver}/QtCore"
 	append-cxxflags '-fno-strict-aliasing'
