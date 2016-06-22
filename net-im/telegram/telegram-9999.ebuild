@@ -16,7 +16,8 @@ SLOT="0"
 KEYWORDS=""
 
 DEPEND="
-	>=dev-libs/qtcore-5.3.2:5
+	>=dev-qt/qtcore-5.3.2:5
+	>=dev-qt/qtgui-5.3.2:5
 	>=dev-libs/openssl-1.0.1:0
 	>=sys-libs/zlib-1.2.8
 	>=media-libs/libexif-0.6.20
