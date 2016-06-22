@@ -80,8 +80,8 @@ src_install() {
 	insinto /usr/share/licenses/${PN}
 	doins "${FILES}/EULA"
 
-	fperms +x ${D}/opt/Unity/Editor/Unity ${D}/opt/Unity/Editor/UnityHelper
-	fperms 4755 ${D}/opt/Unity/Editor/chrome-sandbox
+	fperms +x /opt/Unity/Editor/Unity /opt/Unity/Editor/UnityHelper
+	fperms 4755 /opt/Unity/Editor/chrome-sandbox
 }
 
 pkg_preinst() {
