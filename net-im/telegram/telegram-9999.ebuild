@@ -56,6 +56,11 @@ src_prepare() {
 		'openssl'
 		'zlib'
 	)
+	local qtlibs=(
+		'composeplatforminputcontextplugin'
+		'ibusplatforminputcontextplugin'
+		'fcitxplatforminputcontextplugin'
+	)
 	local defs=(
 		"TDESKTOP_DISABLE_AUTOUPDATE"
 		"TDESKTOP_DISABLE_REGISTER_CUSTOM_SCHEME"
@@ -93,6 +98,10 @@ src_prepare() {
 
 	for l in "${libs[@]}"; do
 		sedargs+=( -e "\$aLIBS += $(pkg-config --libs ${l})" )
+	done
+
+	for q in "${qtlibs[@]}"; do
+		sedargs+=( -e "s:.*${q}.*::" )
 	done
 
 	for d in "${defs[@]}"; do
