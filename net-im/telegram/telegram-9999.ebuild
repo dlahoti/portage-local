@@ -16,6 +16,8 @@ SLOT="0"
 KEYWORDS=""
 
 DEPEND="
+	dev-libs/libappindicator:3
+	x11-libs/libva
 "
 
 src_prepare() {
