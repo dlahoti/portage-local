@@ -122,7 +122,7 @@ src_prepare() {
 }
 
 src_configure() {
-	qt_ver=$(qtchooser -qt=5 -run-tool=qmake -query QT_VERSION)
+	local qt_ver=$(qtchooser -qt=5 -run-tool=qmake -query QT_VERSION)
 	append-cxxflags "-I/usr/include/qt5/QtGui/${qt_ver}/QtGui"
 	append-cxxflags "-I/usr/include/qt5/QtCore/${qt_ver}/QtCore"
 	append-cxxflags '-fno-strict-aliasing'
@@ -167,6 +167,7 @@ src_compile() {
 
 	# now we have everything we need, so let's begin!
 	elog "Building Telegram ..."
+	local qt_ver=$(qtchooser -qt=5 -run-tool=qmake -query QT_VERSION)
 	eqmake5 CONFIG+="${mode}" QT_TDESKTOP_VERSION="$qt_ver" QT_TDESKTOP_PATH="/usr/" "${S}/Telegram/Telegram.pro"
 	emake
 }
