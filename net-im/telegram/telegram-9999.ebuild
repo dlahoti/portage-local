@@ -16,9 +16,19 @@ SLOT="0"
 KEYWORDS=""
 
 DEPEND="
+	>=dev-libs/qtcore-5.3.2:5
+	>=dev-libs/openssl-1.0.1:0
+	>=sys-libs/zlib-1.2.8
+	>=media-libs/libexif-0.6.20
+	app-arch/xz-utils
+	media-libs/openal
+	virtual/ffmpeg
 	dev-libs/libappindicator:3
 	x11-libs/libva
+	media-fonts/open-sans
 "
+
+RDEPEND="${DEPEND}"
 
 src_prepare() {
 	local mode=release;
