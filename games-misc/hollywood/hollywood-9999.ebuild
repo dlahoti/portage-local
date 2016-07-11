@@ -26,7 +26,7 @@ DEPEND="
 	mplayer? ( media-video/mplayer[libcaca] )
 	mpv? ( media-video/mpv[libcaca] )
 	speedometer? ( net-analyzer/speedometer )
-	sshart? ( net-misc/openssh )
+	sshart? ( virtual/ssh )
 	tree? ( app-text/tree )
 	"
 RDEPEND="${DEPEND}"
