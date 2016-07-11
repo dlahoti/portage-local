@@ -14,20 +14,19 @@ fi
 
 LICENSE="MIT"
 SLOT="0"
-IUSE=""
+IUSE="+hesiod"
 
 DEPEND="
 	app-crypt/mit-krb5
 	sys-libs/libtermcap-compat
+	hesiod? ( net-libs/hesiod )
 "
+RDEPEND="${DEPEND}"
 
 S="${WORKDIR}/${P}/moira"
 
 src_prepare() {
 	local client toreplace
-
-	cd "${S}/util/et" || die
-	eautoreconf
 
 	cd "${S}" || die
 	for client in chfn chsh; do
@@ -49,6 +48,9 @@ src_prepare() {
 	done
 
 	eapply_user
+
+	cd "${S}/util/et" || die
+	eautoreconf
 }
 
 src_configure() {
@@ -56,7 +58,7 @@ src_configure() {
 	econf
 
 	cd "${S}" || die
-	econf --with-krb5="${EPREFIX}/usr/lib" CFLAGS=-fPIC
+	econf --with-krb5="${EPREFIX}/usr/lib" $(use_with hesiod hesiod=/usr/lib) CFLAGS=-fPIC
 }
 
 src_compile() {
