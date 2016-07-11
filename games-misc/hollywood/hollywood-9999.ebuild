@@ -40,7 +40,7 @@ src_prepare() {
 		cp mplayer mpv || die
 		sed -i -e 's:mplayer:mpv:g' mpv || die
 	fi
-	sed -i -e 's:^widget_dir=.*:widget_dir=/usr/libexec/$PKG' "${S}/bin/hollywood" || die
+	sed -i -e 's:^widget_dir=.*:widget_dir=/usr/libexec/$PKG:g' "${S}/bin/hollywood" || die
 }
 
 src_install() {
