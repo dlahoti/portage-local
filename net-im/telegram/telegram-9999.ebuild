@@ -11,8 +11,6 @@ if [[ "${PV}" -ne "9999" ]]; then
 else
 	KEYWORDS=""
 fi
-#BREAKPAD_REPO="https://chromium.googlesource.com/breakpad/breakpad"
-#BREAKPAD_LSS_REPO="https://chromium.googlesource.com/linux-syscall-support"
 QTVER="5.6.0"
 SRC_URI="
 	http://download.qt.io/official_releases/qt/${QTVER%.*}/$QTVER/submodules/qtbase-opensource-src-$QTVER.tar.xz
@@ -79,12 +77,6 @@ src_unpack() {
 	fi
 
 	git-r3_src_unpack
-
-#	git-r3_fetch "${BREAKPAD_REPO}"
-#	git-r3_checkout "${BREAKPAD_REPO}" "${WORKDIR}/breakpad"
-#
-#	git-r3_fetch "${BREAKPAD_LSS_REPO}"
-#	git-r3_checkout "${BREAKPAD_LSS_REPO}" "${WORKDIR}/breakpad-lss"
 }
 
 src_prepare() {
@@ -206,36 +198,7 @@ src_prepare() {
 	done
 
 	sed -i -r "${sedargs[@]}" "${S}/Telegram/Telegram.pro" || die "Can't patch Telegram.pro"
-
-	## nuke libunity references
-#	sedargs=(
-#		# ifs cannot be deleted, so replace them with 0
-#		-e 's|if *\( *_psUnityLauncherEntry *\)|if(0)|'
-#		# this is probably not needed, but anyway
-#		-e 's|noTryUnity *= *false,|noTryUnity = true,|'
-#		# delete includes
-#		-e 's|(.*unity\.h.*)|// \1|'
-#		# delete various refs
-#		-e 's|(.*f_unity*)|// \1|'
-#		-e 's|(.*ps_unity_*)|// \1|'
-#		-e 's|(.*UnityLauncher*)|// \1|'
-#	)
-#	sed -i -r "${sedargs[@]}" "${S}/Telegram/SourceFiles/pspecific_linux.cpp" || die "Can't nuke-unity patch"
 	# end taken portion
-
-#	if [[ ! -h "${S}/Libraries/breakpad" ]]; then
-#		ln -s "${WORKDIR}/breakpad" "${S}/Libraries/breakpad" || die
-#		ln -s "${WORKDIR}/breakpad-lss" "${S}/Libraries/breakpad/src/third_party/lss" || die
-#	fi
-
-#	cat >>"${S}/Telegram/Telegram.pro" <<-EOF
-#		DEFINES += TDESKTOP_DISABLE_AUTOUPDATE
-#		DEFINES += TDESKTOP_DISABLE_REGISTER_CUSTOM_SCHEME
-#		INCLUDEPATH += "/usr/lib/glib-2.0/include"
-#		INCLUDEPATH += "/usr/lib/gtk-2.0/include"
-#		INCLUDEPATH += "/usr/include/opus"
-#		LIBS += -lcrypto -lssl
-#	EOF
 
 	default
 }
@@ -265,9 +228,6 @@ src_configure() {
 		-static \
 		-nomake examples \
 		-nomake tests
-
-#	cd "${S}/Libraries/breakpad" || die
-#	econf
 }
 
 src_compile() {
@@ -286,10 +246,6 @@ src_compile() {
 	eqmake5
 	emake
 	emake install
-
-#	cd "${S}/Libraries/breakpad" || die
-#	elog "Building breakpad"
-#	emake
 
 	for module in style numbers; do
 		d="${S}/Linux/obj/codegen_${module}/${mode^}"
@@ -313,22 +269,17 @@ src_compile() {
 	mkdir -v -p "${d}" && cd "${d}" || die
 
 	elog "Preparing the main build..."
-#	eqmake5 QT_TDESKTOP_PATH="${S}/qt" QT_TDESKTOP_VERSION="${QTVER}" CONFIG+="${mode}" "${S}/Telegram/Telegram.pro"
-#
-#	local targets=( $( awk '/^PRE_TARGETDEPS *\+=/ { $1=$2=""; print }' "${S}/Telegram/Telegram.pro" ) )
-#	[[ ${#targets[@]} -eq 0 ]] && die
-#	emake ${targets[@]}
 	"${S}/Linux/codegen/${mode^}/codegen_style" \
 		-I"${S}/Telegram/Resources" \
 		-I"${S}/Telegram/SourceFiles" \
 		-o"${S}/Telegram/GeneratedFiles/styles" \
-		all_files.style --rebuild
+		all_files.style --rebuild || die
 	"${S}/Linux/codegen/${mode^}/codegen_numbers" \
 		-o"${S}/Telegram/GeneratedFiles" \
-		"${S}/Telegram/Resources/numbers.txt"
+		"${S}/Telegram/Resources/numbers.txt" || die
 	"${S}/Linux/${mode^}Lang/MetaLang" \
 		-lang_in "${S}/Telegram/Resources/langs/lang.strings" \
-		-lang_out "${S}/Telegram/GeneratedFiles/lang_auto"
+		-lang_out "${S}/Telegram/GeneratedFiles/lang_auto" || die
 
 	elog "Building Telegram..."
 	eqmake5 QT_TDESKTOP_PATH="${S}/qt" QT_TDESKTOP_VERSION="${QTVER}" CONFIG+="${mode}" "${S}/Telegram/Telegram.pro"
