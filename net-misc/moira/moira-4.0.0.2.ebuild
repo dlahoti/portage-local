@@ -19,7 +19,7 @@ IUSE="+hesiod"
 DEPEND="
 	app-crypt/mit-krb5
 	sys-libs/libtermcap-compat
-	hesiod? ( net-libs/hesiod )
+	hesiod? ( net-dns/hesiod )
 "
 RDEPEND="${DEPEND}"
 
