@@ -41,6 +41,8 @@ src_prepare() {
 		sed -i -e 's:mplayer:mpv:g' mpv || die
 	fi
 	sed -i -e 's:^widget_dir=.*:widget_dir=/usr/libexec/$PKG:g' "${S}/bin/hollywood" || die
+
+	default
 }
 
 src_install() {
