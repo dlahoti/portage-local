@@ -11,6 +11,11 @@ IUSE=""
 
 DEPEND="dev-python/urwid"
 
+src_prepare() {
+	sed -i -e 's:#!/usr/bin/python:#!/usr/bin/env python2:g' "${S}/speedometer.py"
+	default
+}
+
 src_install() {
 	newbin "${S}/speedometer.py" speedometer
 }
