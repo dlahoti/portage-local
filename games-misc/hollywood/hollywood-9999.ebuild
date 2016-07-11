@@ -42,7 +42,7 @@ src_prepare() {
 	fi
 	sed -i -e 's:^widget_dir=.*:widget_dir=/usr/libexec/$PKG:g' "${S}/bin/hollywood" || die
 
-	default
+	eapply_user
 }
 
 src_install() {
