@@ -40,6 +40,9 @@ src_prepare() {
 		cp mplayer mpv || die
 		sed -i -e 's:mplayer:mpv:g' mpv || die
 	fi
+	if use man; then
+		sed -i -e 's:\\.gz::g' man || die
+	fi
 	sed -i -e 's:^widget_dir=.*:widget_dir=/usr/libexec/$PKG:g' "${S}/bin/hollywood" || die
 
 	eapply_user
