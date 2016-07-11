@@ -5,9 +5,11 @@ inherit git-r3 toolchain-funcs flag-o-matic
 DESCRIPTION="official telegram protocol client"
 HOMEPAGE="https://desktop.telegram.org/"
 EGIT_REPO_URI="https://github.com/telegramdesktop/tdesktop.git" #tag=v${PV}"
-if [[ "${PV}" != "9999" ]]; then
+if [[ "${PV}" -ne "9999" ]]; then
 	EGIT_COMMIT="refs/tags/v${PV}"
 	KEYWORDS="~amd64 ~x86"
+else
+	KEYWORDS=""
 fi
 #BREAKPAD_REPO="https://chromium.googlesource.com/breakpad/breakpad"
 #BREAKPAD_LSS_REPO="https://chromium.googlesource.com/linux-syscall-support"
