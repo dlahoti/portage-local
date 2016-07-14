@@ -28,15 +28,7 @@ DEPEND="
 "
 RDEPEND="${DEPEND}"
 
-#PATCHES=( clients-remove-useless.patch lib-parallel-make.patch zwgc-ares-pic.patch )
-
 src_prepare() {
-#	for patch in "${PATCHES[@]}"; do
-#		epatch "${FILESDIR}/${patch}"
-#	done
-#	sed -i -e 's:ATHENA_ARES::g' "${S}/configure.in"
-#	cp "${FILESDIR}/compile_et.sh" "${S}/lib"
-
 	eapply_user
 
 	eautoreconf
