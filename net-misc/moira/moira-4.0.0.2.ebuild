@@ -14,16 +14,19 @@ fi
 
 LICENSE="MIT"
 SLOT="0"
-IUSE="+hesiod"
+IUSE="+hesiod +zephyr"
 
 DEPEND="
-	app-crypt/mit-krb5
+	virtual/krb5
 	sys-libs/libtermcap-compat
+	sys-libs/e2fsprogs-libs
+	dev-libs/openssl
 	hesiod? ( net-dns/hesiod )
+	zephyr? ( net-im/zephyr )
 "
 RDEPEND="${DEPEND}"
 
-S="${WORKDIR}/${P}/moira"
+S="${S}/moira"
 
 src_prepare() {
 	local client toreplace
@@ -48,23 +51,8 @@ src_prepare() {
 	done
 
 	eapply_user
-
-	cd "${S}/util/et" || die
-	eautoreconf
 }
 
 src_configure() {
-	cd "${S}/util/et" || die
-	econf
-
-	cd "${S}" || die
-	econf --with-krb5="${EPREFIX}/usr/lib" $(use_with hesiod hesiod=/usr/lib) CFLAGS=-fPIC
-}
-
-src_compile() {
-	cd "${S}/util/et" || die
-	emake
-
-	cd "${S}" || die
-	emake
+	econf --with-krb5 --with-com_err $(use_with hesiod) $(use_with zephyr) CFLAGS=-fPIC
 }

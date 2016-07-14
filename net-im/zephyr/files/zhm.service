@@ -1,0 +1,10 @@
+[Unit]
+Description=Zephyr Host Manager
+After=network.target nss-lookup.target
+
+[Service]
+Type=simple
+ExecStart=/usr/sbin/zhm -fn
+
+[Install]
+WantedBy=multi-user.target

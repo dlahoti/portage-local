@@ -1,0 +1,40 @@
+#!/sbin/runscript
+
+depend() {
+	need net
+	use dns
+}
+
+start() {
+	local ret=1
+
+	ebegin "Starting Zephyr Host Manager"
+
+	eindent
+
+	if pgrep -u 0 zhm >/dev/null ; then
+		eerror "zhm already running, not attempting to restart"
+	else
+		/usr/sbin/zhm ${ZHM_OPTIONS}
+		ret=$?
+	fi
+
+	eend ${ret}
+	eoutdent
+	return ${ret}
+}
+
+stop() {
+	local ret=1
+
+	ebegin "Stopping Zephyr Host Manager"
+
+	eindent
+
+	killall -e zhm
+	eend $? && ret=0
+
+	eoutdent
+
+	return ${ret}
+}
