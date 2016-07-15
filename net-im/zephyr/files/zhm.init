@@ -1,4 +1,6 @@
-#!/sbin/runscript
+#!/sbin/openrc-run
+
+. /etc/zephyr/config
 
 depend() {
 	need net
@@ -12,10 +14,10 @@ start() {
 
 	eindent
 
-	if pgrep -u 0 zhm >/dev/null ; then
+	if pgrep -u $(id -u "${USER}") zhm >/dev/null ; then
 		eerror "zhm already running, not attempting to restart"
 	else
-		/usr/sbin/zhm ${ZHM_OPTIONS}
+		/sbin/start-stop-daemon --start --quiet --pidfile "${PIDFILE}" --user "${USER}" --exec /usr/sbin/zhm -- ${ZHM_OPTIONS}
 		ret=$?
 	fi
 
@@ -31,7 +33,7 @@ stop() {
 
 	eindent
 
-	killall -e zhm
+	start-stop-daemon --stop --quiet --pidfile "${PIDFILE}" --name zhm
 	eend $? && ret=0
 
 	eoutdent

@@ -1,6 +1,6 @@
 EAPI="6"
 
-inherit git-r3 autotools
+inherit git-r3 autotools user
 
 DESCRIPTION="The Zephyr notification system"
 HOMEPAGE="https://zephyr-im.org/"
@@ -28,6 +28,10 @@ DEPEND="
 "
 RDEPEND="${DEPEND}"
 
+pkg_setup() {
+	enewuser zephyr -1 -1 /etc/zephyr
+}
+
 src_prepare() {
 	eapply_user
 
@@ -42,10 +46,13 @@ src_configure() {
 src_install() {
 	default
 
-	newinitd "${FILESDIR}/zhm-init" zhm
-	newconfd "${FILESDIR}/zhm-conf" zhm
+	newinitd "${FILESDIR}/zhm.init" zhm
+	newconfd "${FILESDIR}/zhm.conf" zhm
 	if use systemd; then
 		insinto /usr/lib/systemd/system
 		doins "${FILESDIR}/zhm.service"
 	fi
+
+	insinto /etc/zephyr
+	newins "${FILESDIR}/zhm.etc" config
 }

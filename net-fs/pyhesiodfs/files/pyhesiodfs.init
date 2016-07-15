@@ -1,0 +1,38 @@
+#!/sbin/openrc-run
+
+PYHESIODFS_USER=pyhesiodfs
+PYHESIODFS_GROUP="${PYHESIODFS_USER}"
+
+. /etc/pyhesiodfs
+
+depend() {
+	need net
+	use dns
+}
+
+start() {
+    # Try to make sure fuse is setup
+    [ -e /dev/fuse ] || modprobe fuse || return 2
+    
+    if cat /proc/mounts | grep " ${PYHESIODFS_DIR} " >/dev/null 2>&1; then
+	return 1
+    fi
+    
+    mkdir -p "$PYHESIODFS_DIR" -m 700
+    
+    start-stop-daemon --start --quiet --pidfile "${PIDFILE}" \
+        --chuid "${PYHESIODFS_USER}":"${PYHESIODFS_GROUP}" --background \
+        --make-pidfile \
+	--exec /usr/bin/pyhesiodfs -- \
+        ${PYHESIODFS_ARGS} \
+        || return 2
+}
+
+stop() {
+    if cat /proc/mounts | grep " ${PYHESIODFS_DIR}" >/dev/null 2>&1; then
+        umount -l "${PYHESIODFS_DIR}" || return 2
+	rm -f "${PIDFILE}"
+    else
+	return 1
+    fi
+}

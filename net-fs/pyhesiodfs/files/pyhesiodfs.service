@@ -1,0 +1,13 @@
+[Unit]
+Description=Hesiod AFS automounter
+After=network.target nss-lookup.target pyhesiodfs-setup.service
+Requires=pyhesiodfs-setup.service
+
+[Service]
+EnvironmentFile=/etc/pyhesiodfs
+Type=simple
+User=pyhesiodfs
+ExecStart=/usr/bin/pyhesiodfs -f "${PYHESIODFS_DIR}" ${PYHESIODFS_ARGS}
+
+[Install]
+WantedBy=multi-user.target

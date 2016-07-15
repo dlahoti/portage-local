@@ -3,8 +3,10 @@ Description=Zephyr Host Manager
 After=network.target nss-lookup.target
 
 [Service]
+EnvironmentFile=/etc/zephyr/config
+User=$ZHM_USER
 Type=simple
-ExecStart=/usr/sbin/zhm -fn
+ExecStart=/usr/sbin/zhm -n $ZHM_ARGS
 
 [Install]
 WantedBy=multi-user.target

@@ -1,0 +1,8 @@
+[Unit]
+Description=Hesiod AFS automounter directory setup
+
+[Service]
+EnvironmentFile=/etc/pyhesiodfs
+Type=oneshot
+ExecStartPre=-/bin/mkdir -m770 -p "${PYHESIODFS_DIR}"
+ExecStart=/bin/chown root:pyhesiodfs "${PYHESIODFS_DIR}"

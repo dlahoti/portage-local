@@ -1,0 +1,2 @@
+PYHESIODFS_DIR=/mit
+PYHESIODFS_ARGS=-ononempty
