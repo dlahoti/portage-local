@@ -37,11 +37,10 @@ src_prepare() {
 		sed -i -e 's:^command -v ccze.*::g' -e 's: | ccze [^|]*::g' * || die
 	fi
 	if use mpv; then
-		cp mplayer mpv || die
-		sed -i -e 's:mplayer:mpv:g' mpv || die
+		sed -e 's:mplayer:mpv:g' mplayer >mpv || die
 	fi
 	if use man; then
-		sed -i -e 's:\\.gz::g' man || die
+		sed -i -e 's:\\\.gz::g' man || die
 	fi
 	sed -i -e 's:^widget_dir=.*:widget_dir=/usr/libexec/$PKG:g' "${S}/bin/hollywood" || die
 
