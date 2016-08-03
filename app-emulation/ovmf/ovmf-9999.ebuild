@@ -18,7 +18,7 @@ DEPEND="
 "
 RDEPEND=""
 
-TOOL_CHAIN_TAG="GCC49"
+TOOL_CHAIN_TAG="GCC5"
 
 src_prepare() {
 	sedargs=(
