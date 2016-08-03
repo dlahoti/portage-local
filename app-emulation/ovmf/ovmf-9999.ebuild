@@ -13,7 +13,7 @@ IUSE="debug"
 
 DEPEND="
 	>=sys-devel/gcc-4.9.3
-	sys-devel/binutils
+	>=sys-devel/binutils-2.21.1
 	sys-power/iasl
 "
 RDEPEND=""
@@ -33,9 +33,6 @@ src_prepare() {
 }
 
 src_configure() {
-	local _GCC_SPECS="/usr/lib/gcc/$($(tc-getCC) -dumpmachine)/$($(tc-getCC) -dumpversion)/vanilla.specs"
-	[[ -f "${_GCC_SPECS}" ]] && export GCC_SPECS="${_GCC_SPECS}"
-
 	emake -j1 -C "${S}/BaseTools" ARCH=X64
 
 	source "${S}/edksetup.sh" BaseTools
