@@ -12,13 +12,13 @@ SLOT="0"
 IUSE="debug"
 
 DEPEND="
-	>=sys-devel/gcc-4.9.3
+	>=sys-devel/gcc-5.0.0
 	>=sys-devel/binutils-2.21.1
 	sys-power/iasl
 "
 RDEPEND=""
 
-TOOL_CHAIN_TAG="GCC49"
+TOOL_CHAIN_TAG="GCC5"
 
 src_prepare() {
 	sedargs=(
