@@ -42,7 +42,7 @@ src_prepare() {
 	if use man; then
 		sed -i -e 's:\\\.gz::g' man || die
 	fi
-	sed -i -e 's:^widget_dir=.*:widget_dir=/usr/libexec/$PKG:g' "${S}/bin/hollywood" || die
+	sed -i -e 's:lib/hollywood:libexec/$PKG:' -e 's:^widget_dir=.*:widget_dir=/usr/libexec/$PKG:' "${S}/bin/hollywood" || die
 
 	eapply_user
 }
