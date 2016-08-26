@@ -4,7 +4,7 @@ inherit git-r3
 
 HOMEPAGE="https://github.com/vysheng/tg"
 DESCRIPTION="Command line interface client for Telegram"
-EGIT_REPO_URI="https://github.com/vysheng/tg.git"
+EGIT_REPO_URI="https://github.com/Cojad/tg.git"
 if [[ "${PV}" -ne "9999" ]]; then
 	EGIT_COMMIT="refs/tags/${PV}"
 	KEYWORDS="~amd64 ~x86"
