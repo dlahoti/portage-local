@@ -12,6 +12,7 @@ inherit haskell-cabal git-r3
 DESCRIPTION="Haskell bindings for libxkbcommon"
 HOMEPAGE="https://github.com/dlahoti/haskell-xkbcommon"
 EGIT_REPO_URI="https://github.com/dlahoti/haskell-xkbcommon.git"
+EGIT_BRANCH="patch-1"
 
 LICENSE="MIT"
 SLOT="0/${PV}"
