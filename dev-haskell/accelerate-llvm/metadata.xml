@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
-<pkgmetadata>
-	<longdescription>
-		This library implements direct LLVM IR generation for the /Accelerate/
-		language. For further information, refer to the main /Accelerate/ package:
-		&lt;http://hackage.haskell.org/package/accelerate&gt;
-	</longdescription>
-</pkgmetadata>
