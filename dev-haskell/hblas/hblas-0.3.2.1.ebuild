@@ -33,6 +33,13 @@ DEPEND="${RDEPEND}
 		>=dev-haskell/vector-0.5 <dev-haskell/vector-0.12 )
 "
 
+src_prepare() {
+	sed -i -e 's:storable-complex .*:storable-complex:' "${S}/${PN}.cabal"
+	sed -i -e 's:primitive .*:primitive:' "${S}/${PN}.cabal"
+
+	eapply_user
+}
+
 src_configure() {
 	haskell-cabal_src_configure \
 		-fcblas
