@@ -18,8 +18,8 @@ SLOT="0/${PV}"
 KEYWORDS="~amd64 ~x86"
 IUSE=""
 
-RDEPEND=">=dev-haskell/primitive-0.5:=[profile?] <dev-haskell/primitive-0.6:=[profile?]
-	>=dev-haskell/storable-complex-0.2.0:=[profile?] <dev-haskell/storable-complex-0.3.0:=[profile?]
+RDEPEND=">=dev-haskell/primitive-0.5:=[profile?]
+	>=dev-haskell/storable-complex-0.2.0:=[profile?]
 	dev-haskell/vector:=[profile?]
 	>=dev-lang/ghc-7.6.1:=
 	virtual/cblas
