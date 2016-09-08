@@ -24,6 +24,7 @@ RDEPEND=">=dev-haskell/primitive-0.5:=[profile?]
 	>=dev-lang/ghc-7.6.1:=
 	virtual/cblas
 	virtual/blas
+	virtual/lapack
 "
 DEPEND="${RDEPEND}
 	>=dev-haskell/cabal-1.16.0
@@ -34,13 +35,11 @@ DEPEND="${RDEPEND}
 "
 
 src_prepare() {
-	sed -i -e 's:storable-complex .*:storable-complex:' "${S}/${PN}.cabal"
-	sed -i -e 's:primitive .*:primitive:' "${S}/${PN}.cabal"
+	epatch "${FILESDIR}/cabal.patch"
 
 	eapply_user
 }
 
 src_configure() {
-	haskell-cabal_src_configure \
-		-fcblas
+	haskell-cabal_src_configure -fcblas
 }
