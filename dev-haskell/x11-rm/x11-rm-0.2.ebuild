@@ -27,7 +27,7 @@ DEPEND="${RDEPEND}
 S="${WORKDIR}/${MY_P}"
 
 src_prepare() {
-	sed -i -e 's:^> ::' "${S}/Setup.hs" || die
+	mv "${S}/Setup.hs" "${S}/Setup.lhs" || die
 
 	eapply_user
 }

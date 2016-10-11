@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<longdescription>
+		Collect all of the declarations in a module using Template Haskell (via the GHC API).
+		
+		One can either get all the names, or just the declarations (only type declarations
+		are supported right now).
+		
+		Here is a quick example:
+		
+		&gt; import Language.Haskell.TH.Module.Magic (names)
+		&gt;
+		&gt; data Test = Test Int
+		&gt; newtype OtherTest = OtherTest Test
+		&gt;
+		&gt; someFunction :: String -&gt; String
+		&gt; someFunction = id
+		&gt;
+		&gt; -- &#39;names&#39; is Template Haskell function that will collect all of the
+		&gt; -- toplevel declaration names of the current file.
+		&gt; names &gt;&gt;= runIO . print &gt;&gt; return []
+		
+		Which will spew the following when compiling:
+		
+		&gt; [Test,OtherTest,someFunction]
+		
+		There is also &#39;declarations&#39; which can be used, for example, to make sure that all
+		types have @ToJSON@/@FromJSON@ instances.
+		
+		&gt; import Data.Aeson.TH (deriveJSON, defaultOptions)
+		&gt; import MonadUtils (concatMapM)
+		&gt; import Language.Haskell.TH.Module.Magic (declarations)
+		&gt;
+		&gt; data Test = Test Int
+		&gt; newtype OtherTest = OtherTest Test
+		&gt;
+		&gt; concatMapM (deriveJSON defaultOptions) =&lt;&lt; declarations
+		
+		Which will make JSON instances for Test, OtherTest and any other types
+		added to the file.
+		
+		You can also do the same thing for an existing module.
+		
+		&gt; import Data.Aeson.TH (deriveJSON, defaultOptions)
+		&gt; import MonadUtils (concatMapM)
+		&gt; import Language.Haskell.TH.Module.Magic (moduleDeclarations)
+		&gt; import Data.Monoid
+		&gt;
+		&gt; concatMapM (deriveJSON defaultOptions) =&lt;&lt; moduleDeclarations &quot;Data.Monoid&quot;
+		
+		Which will build instances for all the types in &quot;Data.Monoid&quot;.
+	</longdescription>
+</pkgmetadata>
