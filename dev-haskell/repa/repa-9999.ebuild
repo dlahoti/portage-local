@@ -21,7 +21,7 @@ IUSE=""
 S="${S}/${PN}"
 
 RDEPEND=">=dev-haskell/quickcheck-2.7:2=[profile?]
-	>=dev-haskell/vector-0.10:=[profile?] <dev-haskell/vector-0.11:=[profile?]
+	>=dev-haskell/vector-0.10:=[profile?] <dev-haskell/vector-0.12:=[profile?]
 	>=dev-lang/ghc-7.8.2:=
 "
 DEPEND="${RDEPEND}
