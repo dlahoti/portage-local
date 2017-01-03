@@ -28,7 +28,7 @@ DEPEND="
 
 src_configure() {
 	local mycmakeargs=(
-		$(cmake-utils_use_use cpu_flags_x86_sse SSE)
+		-DUSE_SSE="$(usex cpu_flags_x86_sse)"
 	)
 
 	cmake-utils_src_configure
