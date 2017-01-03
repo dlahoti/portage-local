@@ -2,7 +2,7 @@ EAPI=6
 
 inherit git-r3 cmake-utils
 
-DESCRIPTION="Hollywood-style noisy text displayed on the screen"
+DESCRIPTION="a cross-platform implementation of various reaction-diffusion systems"
 HOMEPAGE="https://github.com/GollyGang/ready"
 EGIT_REPO_URI="https://github.com/GollyGang/ready.git"
 #SRC_URI="https://github.com/GollyGang/ready/archive/gh-pages.tar.gz -> ${P}.tar.gz"
