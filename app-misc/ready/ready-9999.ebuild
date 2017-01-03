@@ -18,7 +18,7 @@ RDEPEND="
 	virtual/opencl
 	media-libs/mesa
 	dev-libs/ocl-icd
-	>=sci-libs/vtk-6.2
+	>=sci-libs/vtk-6.2[all-modules]
 	"
 DEPEND="
 	${RDEPEND}
