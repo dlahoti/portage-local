@@ -5,11 +5,11 @@ inherit git-r3 cmake-utils
 DESCRIPTION="a cross-platform implementation of various reaction-diffusion systems"
 HOMEPAGE="https://github.com/GollyGang/ready"
 EGIT_REPO_URI="https://github.com/GollyGang/ready.git"
-#SRC_URI="https://github.com/GollyGang/ready/archive/gh-pages.tar.gz -> ${P}.tar.gz"
+#SRC_URI="https://github.com/GollyGang/ready/archive/${PV}.tar.gz -> ${P}.tar.gz"
 
 LICENSE="GPL-3"
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS=""
 IUSE="doc"
 
 RDEPEND="
@@ -23,7 +23,7 @@ RDEPEND="
 DEPEND="
 	${RDEPEND}
 	>=dev-util/cmake-3.3
-	doc? (app-doc/doxygen)
+	doc? ( app-doc/doxygen )
 	"
 
 src_configure() {
