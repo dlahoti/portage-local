@@ -10,7 +10,7 @@ EGIT_REPO_URI="https://github.com/GollyGang/ready.git"
 LICENSE="GPL-3"
 SLOT="0"
 KEYWORDS=""
-IUSE="doc"
+IUSE="doc cpu_flags_x86_sse"
 
 RDEPEND="
 	>=x11-libs/wxGTK-2.9.2
