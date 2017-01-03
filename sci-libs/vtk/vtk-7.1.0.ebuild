@@ -34,7 +34,7 @@ IUSE="
 	video_cards_nvidia views web xdmf2 R +X"
 
 REQUIRED_USE="
-	all-modules? ( python xdmf2 )
+	all-modules? ( gdal imaging java mpi mysql python qt5 rendering tcl tk views web xdmf2 )
 	java? ( qt5 )
 	python? ( ${PYTHON_REQUIRED_USE} )
 	tcl? ( rendering )
@@ -94,6 +94,7 @@ RDEPEND="
 		dev-qt/qtopengl:5
 		dev-qt/qtsql:5
 		dev-qt/qtwebkit:5
+		dev-qt/qtx11extras:5
 		python? ( dev-python/PyQt5[${PYTHON_USEDEP}] )
 		)
 	tbb? ( dev-cpp/tbb )
@@ -181,6 +182,7 @@ src_configure() {
 		-DVTK_CUSTOM_LIBRARY_SUFFIX=""
 		-DBUILD_SHARED_LIBS=ON
 		-DVTK_USE_SYSTEM_AUTOBAHN=ON
+		-DVTK_USE_SYSTEM_DIY2=OFF
 		-DVTK_USE_SYSTEM_EXPAT=ON
 		-DVTK_USE_SYSTEM_FREETYPE=ON
 		-DVTK_USE_SYSTEM_FreeType=ON
