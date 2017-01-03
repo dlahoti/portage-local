@@ -34,7 +34,7 @@ IUSE="
 	video_cards_nvidia views web xdmf2 R +X"
 
 REQUIRED_USE="
-	all-modules? ( gdal imaging java mpi mysql postgres python qt5 rendering tcl tk views web xdmf2 )
+	all-modules? ( gdal imaging mpi mysql postgres python qt5 rendering tcl tk views web xdmf2 )
 	java? ( qt5 )
 	python? ( ${PYTHON_REQUIRED_USE} )
 	tcl? ( rendering )
