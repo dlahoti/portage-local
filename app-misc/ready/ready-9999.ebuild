@@ -37,7 +37,5 @@ src_configure() {
 src_compile() {
 	cmake-utils_src_compile
 
-	if use doc; then
-		cmake-utils_src_make doc
-	fi
+	use doc && cmake-utils_src_make doc
 }
