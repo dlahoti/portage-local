@@ -34,7 +34,7 @@ IUSE="
 	video_cards_nvidia views web xdmf2 R +X"
 
 REQUIRED_USE="
-	all-modules? ( python xdmf2 )
+	all-modules? ( gdal imaging mpi mysql postgres python qt5 rendering tcl tk views web xdmf2 )
 	java? ( qt5 )
 	python? ( ${PYTHON_REQUIRED_USE} )
 	tcl? ( rendering )
@@ -45,6 +45,7 @@ REQUIRED_USE="
 	^^ ( X aqua offscreen )
 	"
 
+#	>=x11-libs/gl2ps-1.3.8
 RDEPEND="
 	dev-libs/expat
 	dev-libs/jsoncpp
@@ -60,7 +61,6 @@ RDEPEND="
 	sys-libs/zlib
 	virtual/jpeg:0
 	virtual/opengl
-	>=x11-libs/gl2ps-1.3.8
 	x11-libs/libX11
 	x11-libs/libXmu
 	x11-libs/libXt
@@ -94,6 +94,7 @@ RDEPEND="
 		dev-qt/qtopengl:5
 		dev-qt/qtsql:5
 		dev-qt/qtwebkit:5
+		dev-qt/qtx11extras:5
 		python? ( dev-python/PyQt5[${PYTHON_USEDEP}] )
 		)
 	tbb? ( dev-cpp/tbb )
@@ -145,7 +146,7 @@ src_prepare() {
 
 	local x
 	# missing: VPIC alglib exodusII freerange ftgl libproj4 mrmpi sqlite utf8 verdict xmdf2 xmdf3
-	for x in expat freetype gl2ps hdf5 jpeg jsoncpp libxml2 netcdf oggtheora png tiff zlib; do
+	for x in expat freetype hdf5 jpeg jsoncpp libxml2 netcdf oggtheora png tiff zlib; do
 		ebegin "Dropping bundled ${x}"
 		rm -r ThirdParty/${x}/vtk${x} || die
 		eend $?
@@ -181,10 +182,11 @@ src_configure() {
 		-DVTK_CUSTOM_LIBRARY_SUFFIX=""
 		-DBUILD_SHARED_LIBS=ON
 		-DVTK_USE_SYSTEM_AUTOBAHN=ON
+		-DVTK_USE_SYSTEM_DIY2=OFF
 		-DVTK_USE_SYSTEM_EXPAT=ON
 		-DVTK_USE_SYSTEM_FREETYPE=ON
 		-DVTK_USE_SYSTEM_FreeType=ON
-		-DVTK_USE_SYSTEM_GL2PS=ON
+		-DVTK_USE_SYSTEM_GL2PS=OFF
 		-DVTK_USE_SYSTEM_HDF5=ON
 		-DVTK_USE_SYSTEM_JPEG=ON
 		-DVTK_USE_SYSTEM_LIBPROJ4=OFF
