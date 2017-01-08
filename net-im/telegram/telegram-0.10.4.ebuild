@@ -1,18 +1,17 @@
 EAPI=6
 
-inherit git-r3 toolchain-funcs flag-o-matic
+inherit toolchain-funcs flag-o-matic
+
+MY_PN="tdesktop"
+MY_P="${MY_PN}-${PV}"
+S="${WORKDIR}/${MY_P}"
 
 DESCRIPTION="official telegram protocol client"
 HOMEPAGE="https://desktop.telegram.org/"
-EGIT_REPO_URI="https://github.com/telegramdesktop/tdesktop.git" #tag=v${PV}"
-if [[ "${PV}" -ne "9999" ]]; then
-	EGIT_COMMIT="refs/tags/v${PV}"
-	KEYWORDS="~amd64 ~x86"
-else
-	KEYWORDS=""
-fi
 QTVER="5.6.0"
+KEYWORDS="~amd64 ~x86"
 SRC_URI="
+	https://github.com/telegramdesktop/${MY_PN}/archive/v${PV}.tar.gz -> ${P}.tar.gz
 	http://download.qt.io/official_releases/qt/${QTVER%.*}/$QTVER/submodules/qtbase-opensource-src-$QTVER.tar.xz
 	http://download.qt.io/official_releases/qt/${QTVER%.*}/$QTVER/submodules/qtimageformats-opensource-src-$QTVER.tar.xz
 	"
@@ -29,7 +28,7 @@ DEPEND="
 	media-libs/opus
 	media-libs/openal
 	x11-libs/libva
-"
+	"
 RDEPEND="${DEPEND}"
 
 # taken from qmake-utils.eclass
@@ -69,14 +68,6 @@ eqmake5() {
 		echo
 		die "eqmake5 failed"
 	fi
-}
-
-src_unpack() {
-	if [[ "${A}" != "" ]]; then
-		unpack ${A}
-	fi
-
-	git-r3_src_unpack
 }
 
 src_prepare() {
