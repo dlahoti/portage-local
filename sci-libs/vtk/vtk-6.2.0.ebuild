@@ -17,13 +17,13 @@ SPV="$(get_version_component_range 1-2)"
 DESCRIPTION="The Visualization Toolkit"
 HOMEPAGE="http://www.vtk.org/"
 SRC_URI="
-	http://www.${PN}.org/files/release/${SPV}/VTK-${PV}.tar.gz
-	doc? ( http://www.${PN}.org/files/release/${SPV}/${PN}DocHtml-${PV}.tar.gz )
-	test? (
-		http://www.${PN}.org/files/release/${SPV}/VTKData-${PV}.tar.gz
-		http://www.${PN}.org/files/release/${SPV}/VTKLargeData-${PV}.tar.gz
-		)
-	"
+	http://www.${PN}.org/files/release/${SPV}/VTK-${PV}.tar.gz"
+#	doc? ( http://www.${PN}.org/files/release/${SPV}/${PN}DocHtml-${PV}.tar.gz )
+#	test? (
+#		http://www.${PN}.org/files/release/${SPV}/VTKData-${PV}.tar.gz
+#		http://www.${PN}.org/files/release/${SPV}/VTKLargeData-${PV}.tar.gz
+#		)
+#	"
 
 LICENSE="BSD LGPL-2"
 KEYWORDS="~amd64 ~arm ~x86 ~amd64-linux ~x86-linux"
@@ -198,7 +198,7 @@ src_configure() {
 		-DVTK_USE_SYSTEM_PNG=ON
 		-DVTK_USE_SYSTEM_TIFF=ON
 		-DVTK_USE_SYSTEM_TWISTED=ON
-		-DVTK_USE_SYSTEM_XDMF2=ON
+		-DVTK_USE_SYSTEM_XDMF2=OFF
 		-DVTK_USE_SYSTEM_XDMF3=OFF
 		-DVTK_USE_SYSTEM_ZLIB=ON
 		-DVTK_USE_SYSTEM_ZOPE=ON
