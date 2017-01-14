@@ -85,6 +85,7 @@ RDEPEND="
 	python? (
 		${PYTHON_DEPS}
 		dev-python/sip[${PYTHON_USEDEP}]
+		dev-python/six[${PYTHON_USEDEP}]
 		)
 	)
 	qt5? (
@@ -109,7 +110,7 @@ RDEPEND="
 			dev-python/zope-interface[${PYTHON_USEDEP}]
 			)
 		)
-	xdmf2? ( sci-libs/xdmf2 )
+	!sci-libs/xdmf2
 	R? ( dev-lang/R )"
 DEPEND="${RDEPEND}
 	doc? ( app-doc/doxygen )
@@ -196,6 +197,7 @@ src_configure() {
 		-DVTK_USE_SYSTEM_NETCDF=ON
 		-DVTK_USE_SYSTEM_OGGTHEORA=ON
 		-DVTK_USE_SYSTEM_PNG=ON
+		-DVTK_USE_SYSTEM_SIXPYTHON=ON
 		-DVTK_USE_SYSTEM_TIFF=ON
 		-DVTK_USE_SYSTEM_TWISTED=ON
 		-DVTK_USE_SYSTEM_XDMF2=OFF
@@ -344,6 +346,10 @@ src_install() {
 	use web && webapp_src_preinst
 
 	cmake-utils_src_install
+
+	if use python; then
+		rm "usr/lib64/python2.7/site-packages/six.py"
+	fi
 
 	use java && java-pkg_regjar "${ED}"/usr/$(get_libdir)/${PN}.jar
 
