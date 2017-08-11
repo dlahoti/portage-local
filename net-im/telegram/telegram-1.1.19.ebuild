@@ -14,7 +14,7 @@ LICENSE="GPL-3"
 SLOT="0"
 IUSE="debug"
 
-RDEPEND="
+DEPENDS="
 	dev-qt/qtcore:5
 	dev-qt/qtgui:5
 	dev-qt/qtimageformats:5
@@ -28,10 +28,13 @@ RDEPEND="
 	media-libs/openal
 	x11-libs/libva
 	"
-DEPEND="${DEPEND}
+DEPEND="${DEPENDS}
 	dev-util/gyp
 	dev-util/cmake
 	media-sound/pulseaudio
+	"
+RDEPEND="${DEPENDS}
+	media-fonts/open-sans
 	"
 
 # based on AUR telegram-desktop-systemqt
