@@ -27,6 +27,7 @@ DEPENDS="
 	media-libs/opus
 	media-libs/openal
 	x11-libs/libva
+	dev-libs/dee
 	"
 DEPEND="${DEPENDS}
 	dev-util/gyp
@@ -42,7 +43,7 @@ RDEPEND="${DEPENDS}
 src_prepare() {
 	epatch "${FILESDIR}/tdesktop-${PV}.patch"
 
-	sed -i -e 's|^QCoreApplication::addLibraryPath("/usr/lib/qt/plugins");$|QCoreApplication::addLibraryPath("/usr/lib/qt5/plugins");|' "${S}/Telegram/SourceFiles/main.cpp" || die "failed to patch QT plugin directory!"
+	sed -i -e 's|QCoreApplication::addLibraryPath("/usr/lib/qt/plugins");|QCoreApplication::addLibraryPath("/usr/lib/qt5/plugins");|' "${S}/Telegram/SourceFiles/main.cpp" || die "failed to patch QT plugin directory!"
 
 	cd "Telegram/ThirdParty/libtgvoip" || die "couldn't find libtgvoip directory!"
 	epatch "${FILESDIR}/libtgvoip-${PV}.patch"
